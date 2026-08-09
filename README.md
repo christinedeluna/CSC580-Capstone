@@ -1,18 +1,19 @@
-# CSC580 – Deep Learning Capstone
+# CSC580 – Deep Learning
 
-This repository contains coursework, experiments, and programming assignments completed for **CSC580 – Deep Learning** as part of my Master of Science in Artificial Intelligence program at Colorado State University Global.
+This repository contains coursework, programming assignments, and experiments completed for **CSC580 – Deep Learning** as part of my **Master of Science in Artificial Intelligence** at **Colorado State University Global**.
 
-The objective of this course is to develop an understanding of modern deep learning techniques using TensorFlow and Keras, including neural network design, supervised learning, model evaluation, and prediction.
+The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, regression, optimization, model evaluation, and predictive analytics. Each assignment builds toward a stronger understanding of designing, training, and deploying neural networks for real-world applications.
 
 ---
 
 ## Repository Structure
 
 ```
-CSC580-Capstone/
+CSC580/
 ├── assignments/
 │   ├── CTA1-LinearRegression/
-│   └── CTA2-NeuralNetwork/
+│   ├── CTA2-NeuralNetwork/
+│   └── CTA3-AutoMPG-Regression/
 ├── experiments/
 ├── README.md
 ├── requirements.txt
@@ -21,87 +22,98 @@ CSC580-Capstone/
 
 ---
 
-## Assignments
+## Coursework
 
 ### CTA1 – Linear Regression
-Implemented a supervised machine learning model that learns an algebraic function from generated training data using Scikit-learn's `LinearRegression`.
 
-**Topics**
+Developed a supervised machine learning model using Scikit-learn's `LinearRegression` to learn relationships between generated input features and continuous target values.
+
+**Topics Covered**
+
+- Linear regression
 - Feature generation
-- Model training
-- Regression analysis
+- Model fitting
 - Prediction
+- Regression evaluation
 
 ---
 
-### CTA2 – Neural Networks with TensorFlow/Keras
+### CTA2 – Neural Network Revenue Prediction
 
-Designed, trained, evaluated, and deployed a fully connected neural network capable of predicting future video game revenue based on historical sales data.
+Designed, trained, evaluated, and deployed a fully connected neural network using TensorFlow and Keras to predict future video game revenue from historical sales data.
 
-#### Workflow
+**Workflow**
 
-1. Data preprocessing using MinMaxScaler
-2. Neural network construction using TensorFlow/Keras
-3. Model training (50 epochs)
-4. Model evaluation using Mean Squared Error (MSE)
-5. Saving and loading trained models
-6. Predicting revenue for unseen data
+- Data preprocessing with MinMaxScaler
+- Neural network design
+- Model training (50 epochs)
+- Model evaluation using Mean Squared Error (MSE)
+- Model serialization
+- Predicting unseen data
 
-#### Technologies
+---
+
+### CTA3 – TensorFlow Regression with the Auto MPG Dataset
+
+Built a deep learning regression model using TensorFlow and Keras to predict automobile fuel efficiency (MPG) from vehicle characteristics contained in the UCI Auto MPG dataset.
+
+**Workflow**
+
+- Downloading and importing data
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Feature normalization
+- Neural network construction
+- Model training (1,000 epochs)
+- Model evaluation using MAE and MSE
+- Visualization of training performance
+
+---
+
+## Technologies
 
 - Python 3.11
-- TensorFlow 2.x
+- TensorFlow
 - Keras
 - Scikit-learn
 - Pandas
 - NumPy
+- Matplotlib
+- Seaborn
 
 ---
 
 ## Skills Demonstrated
 
-- Data preprocessing
-- Feature scaling
-- Supervised learning
-- Regression using neural networks
-- TensorFlow model development
-- Model evaluation
-- Saving and loading trained models
+- Deep learning with TensorFlow
+- Neural network architecture design
+- Regression modeling
+- Data preprocessing and normalization
+- Exploratory data analysis
+- Model training and optimization
+- Performance evaluation using MAE and MSE
 - Predictive analytics
+- Scientific visualization
 
 ---
 
-## Future Applications
+## Future Research
 
-Although these assignments use educational datasets, the concepts directly transfer to real-world prediction problems. My long-term research interests involve applying deep learning and longitudinal patient data to identify patterns that precede disease flares in autoimmune and other complex chronic conditions, supporting clinical decision-making through AI-assisted predictive analytics.
+While these assignments use educational datasets, the underlying methods directly translate to real-world prediction problems.
+
+My long-term research focuses on applying artificial intelligence to complex healthcare challenges through **AuVentures Health**. Specifically, I am interested in combining deep learning, longitudinal patient records, wearable sensor data, and temporal analysis methods to identify patterns that precede autoimmune and neurodevelopmental disease flares. Although future clinical systems will likely incorporate more advanced techniques such as Dynamic Time Warping (DTW), recurrent neural networks, transformers, and multimodal learning, the concepts explored in this course provide the foundational building blocks for those future applications.
 
 ---
 
 ## Running the Projects
 
-Install the required packages:
+Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Run the preprocessing script:
-
-```bash
-python scale_data.py
-```
-
-Train the neural network:
-
-```bash
-python create_model.py
-```
-
-Generate predictions:
-
-```bash
-python predict.py
-```
+Each assignment contains its own Python scripts and documentation. Refer to the individual assignment folders for execution instructions.
 
 ---
 
@@ -112,5 +124,7 @@ python predict.py
 Founder & CEO, AuVentures Health
 
 Master of Science in Artificial Intelligence
+
+Colorado State University Global
 
 GitHub: https://github.com/christinedeluna
