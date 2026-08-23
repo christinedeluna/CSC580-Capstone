@@ -2,7 +2,7 @@
 
 This repository contains coursework, programming assignments, portfolio milestones, and experiments completed for **CSC580 – Deep Learning** as part of my **Master of Science in Artificial Intelligence** at **Colorado State University Global**.
 
-The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, model evaluation, recurrent neural networks, and predictive analytics. Each assignment builds toward a deeper understanding of designing, training, evaluating, and improving neural networks while applying those concepts to increasingly complex datasets and sequence-based problems.
+The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, hyperparameter tuning, model evaluation, recurrent neural networks, and predictive analytics. Each assignment builds toward a deeper understanding of designing, training, evaluating, and improving neural networks while applying those concepts to increasingly complex datasets and sequence-based problems.
 
 ---
 
@@ -15,6 +15,7 @@ CSC580/
 │   ├── CTA2-NeuralNetwork/
 │   ├── CTA3-AutoMPG-Regression/
 │   ├── CTA4-Toxicology-Classification/
+│   ├── CTA-NN-Accuracy/
 │   └── Portfolio_Project/
 │       ├── Milestones/
 │       ├── Encoder_Decoder/
@@ -94,6 +95,58 @@ Designed and implemented a feedforward neural network for binary toxicology clas
 * TensorBoard visualization and model convergence analysis
 * Validation accuracy: **90.92%**
 * Technical documentation of TensorFlow and RDKit compatibility modernization
+
+---
+
+### CTA5 – Neural Network Accuracy and Hyperparameter Optimization
+
+Extended the Tox21 classification work from CTA4 to investigate how neural network architecture and training hyperparameters affect model performance and generalization. The assignment compared a traditional **Random Forest classifier** with a configurable TensorFlow/Keras neural network and systematically evaluated alternative hyperparameter configurations.
+
+The instructor-provided implementation again relied on legacy TensorFlow 1.x graph and session APIs. Building upon the compatibility lessons from CTA4, the experimental design was preserved while the implementation was modernized for **TensorFlow 2.21 and the current Keras API**.
+
+**Workflow**
+
+* Established a 50-estimator Random Forest baseline
+* Developed a configurable TensorFlow/Keras neural network
+* Evaluated hidden-layer width and network depth
+* Tuned learning rate and dropout regularization
+* Evaluated training duration and batch size
+* Tested positive-class weighting
+* Repeated configurations across multiple random seeds
+* Averaged validation performance to reduce initialization variance
+* Conducted a two-stage hyperparameter search
+* Evaluated the final optimized model on previously unseen test data
+* Analyzed model generalization and overfitting
+* Compared optimized deep learning performance with traditional machine learning
+
+**Hyperparameter Search**
+
+The initial optimization evaluated **16 neural network configurations**, each across three random seeds, resulting in **48 training runs**. A second refinement stage evaluated **12 additional configurations** across three seeds, adding another **36 training runs**.
+
+The strongest configuration used:
+
+```text
+Hidden Units:       50
+Hidden Layers:      2
+Learning Rate:      0.001
+Dropout:            0.50
+Epochs:             60
+Batch Size:         50
+Positive Weighting: Enabled
+```
+
+**Results**
+
+| Model | Validation Accuracy | Test Accuracy |
+|---|---:|---:|
+| Random Forest | **72.32%** | **71.97%** |
+| Baseline Neural Network | 62.43% | — |
+| Optimized NN – 3-Seed Average | 66.13% | — |
+| Final Optimized NN | 63.68% | 65.00% |
+
+Hyperparameter optimization improved the neural network's average validation performance from **62.43% to 66.13%**. However, the final neural network achieved **99.62% training accuracy but only 65.00% test accuracy**, indicating substantial overfitting.
+
+Perhaps the most important finding was that the comparatively traditional Random Forest classifier generalized better than the optimized neural network. This experiment reinforced that **greater model complexity does not inherently produce better predictive performance**. Model selection should be driven by the characteristics of the problem, empirical performance, and generalization to unseen data rather than an assumption that deep learning will always outperform traditional machine learning.
 
 ---
 
@@ -178,6 +231,10 @@ Additional portfolio milestones will be documented as the project progresses.
 * Feedforward neural network architecture
 * Regression modeling
 * Binary classification
+* Random Forest classification
+* Hyperparameter optimization
+* Multi-seed model evaluation
+* Model selection and comparison
 * Model training and optimization
 * Early stopping and overfitting mitigation
 * Validation and test-set evaluation
@@ -187,10 +244,12 @@ Additional portfolio milestones will be documented as the project progresses.
 * Molecular fingerprint analysis
 * Mini-batch gradient descent
 * Dropout regularization
+* Class weighting
 * Adam and RMSprop optimization
 * TensorBoard visualization
 * Model convergence analysis
 * Scientific Python dependency management
+* TensorFlow 1.x to TensorFlow 2.x modernization
 * Biomedical machine learning workflows
 * Recurrent neural networks
 * LSTM architecture
@@ -204,9 +263,11 @@ While these assignments use educational and benchmark datasets, the underlying m
 
 My long-term research focuses on applying artificial intelligence to complex healthcare challenges through **AuVentures Health**. Specifically, I am interested in combining deep learning, longitudinal patient records, wearable sensor data, and temporal analysis methods to identify patterns that precede autoimmune and neurodevelopmental disease flares.
 
-The Portfolio Project is particularly relevant to this research direction. Early stopping and test-set evaluation reinforce the importance of developing models that generalize beyond their training data, while encoder-decoder and LSTM architectures introduce methods for learning from sequential information. These concepts provide foundations for exploring models that can interpret longitudinal patient histories, retain clinically relevant temporal context, and transform sequences of patient information into useful representations for clinical reasoning support.
+The results throughout CSC580 have also reinforced that healthcare AI should not automatically default to the newest or most complex architecture. CTA5 demonstrated that a traditional Random Forest classifier could outperform a systematically optimized neural network on structured biomedical data. Depending on the problem, established machine learning methods may provide stronger generalization, greater interpretability, or lower computational complexity than deep learning.
 
-Future clinical systems may incorporate techniques such as **Dynamic Time Warping (DTW), recurrent neural networks, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific reasoning models**. The concepts explored throughout CSC580 provide foundational building blocks for investigating these more advanced architectures while maintaining an emphasis on model reliability, generalization, and ethical AI.
+The Portfolio Project extends this exploration into sequential modeling. Early stopping and test-set evaluation reinforce the importance of developing models that generalize beyond their training data, while encoder-decoder and LSTM architectures introduce methods for learning from sequential information. These concepts provide foundations for exploring models that can interpret longitudinal patient histories, retain clinically relevant temporal context, and transform sequences of patient information into useful representations for clinical reasoning support.
+
+Future clinical systems may therefore incorporate a combination of **Random Forests, gradient-boosted models, Dynamic Time Warping (DTW), recurrent neural networks, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific modeling** rather than relying on a single architecture. The appropriate method should be determined by the characteristics of the data, the intended clinical question, generalization performance, interpretability requirements, and the consequences of prediction errors.
 
 ---
 
