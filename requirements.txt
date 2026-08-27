@@ -9,6 +9,17 @@ keras==3.15.1
 # Biomedical / Molecular Machine Learning
 deepchem==2.8.0
 rdkit
+# CSC580 - Deep Learning
+# Core project dependencies
+# Python 3.11
+
+# Deep Learning
+tensorflow==2.21.0
+keras==3.15.1
+
+# Biomedical / Molecular Machine Learning
+deepchem==2.8.0
+rdkit
 
 # Machine Learning
 scikit-learn==1.9.0
@@ -22,5 +33,5 @@ scipy==1.17.1
 matplotlib==3.11.1
 seaborn==0.13.2
 
-# TensorFlow Course Utilities
-tensorflow-docs @ git+https://github.com/tensorflow/docs@35e0922e059d7bc6d515a83e03a7494f0640c314
+# Dataset Access
+kagglehub

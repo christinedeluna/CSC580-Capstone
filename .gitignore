@@ -36,3 +36,28 @@ dist/
 
 # VS Code (if you ever use it)
 .vscode/
+
+# CTA6 - Cats vs. Dogs local image dataset
+assignments/CTA6-CNN-Cats-Dogs/data/
+# Datasets
+data/
+datasets/
+*.zip
+
+# Kaggle credentials
+.kaggle/
+kaggle.json
+access_token
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# TensorBoard logs
+**/tensorboard/
+
+# Trained Keras model artifacts
+*.keras

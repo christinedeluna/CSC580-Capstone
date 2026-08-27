@@ -2,7 +2,7 @@
 
 This repository contains coursework, programming assignments, portfolio milestones, and experiments completed for **CSC580 – Deep Learning** as part of my **Master of Science in Artificial Intelligence** at **Colorado State University Global**.
 
-The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, hyperparameter tuning, model evaluation, recurrent neural networks, and predictive analytics. Each assignment builds toward a deeper understanding of designing, training, evaluating, and improving neural networks while applying those concepts to increasingly complex datasets and sequence-based problems.
+The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, hyperparameter tuning, model evaluation, convolutional neural networks, recurrent neural networks, and predictive analytics. Each assignment builds toward a deeper understanding of designing, training, evaluating, and selecting machine learning architectures while applying those concepts to increasingly complex structured, visual, and sequential datasets.
 
 ---
 
@@ -16,6 +16,7 @@ CSC580/
 │   ├── CTA3-AutoMPG-Regression/
 │   ├── CTA4-Toxicology-Classification/
 │   ├── CTA-NN-Accuracy/
+│   ├── CTA6-CNN-Cats-Dogs/
 │   └── Portfolio_Project/
 │       ├── Milestones/
 │       ├── Encoder_Decoder/
@@ -150,6 +151,37 @@ Perhaps the most important finding was that the comparatively traditional Random
 
 ---
 
+### CTA6 – Convolutional Neural Network Image Classification
+
+Introduces **Convolutional Neural Networks (CNNs)** through a binary computer-vision problem: predicting whether an image contains a cat or a dog.
+
+Unlike previous assignments that provided models with structured features such as vehicle characteristics or molecular fingerprints, this assignment works directly with image data. The CNN must learn useful visual representations from pixel relationships, demonstrating why specialized deep-learning architectures can be particularly valuable when the structure of the underlying data supports their use.
+
+The assignment specifies Kaggle's **Dogs vs. Cats** dataset, originally containing 25,000 labeled training images divided evenly between cats and dogs. During project setup, the legacy Kaggle competition repeatedly redirected download attempts to its competition rules despite acceptance of those rules. Authenticated KaggleHub access was also tested but returned an HTTP 403 permission response. The project therefore uses TensorFlow's filtered distribution of the same Dogs vs. Cats images, which removes a small number of corrupted source files.
+
+**Planned Workflow**
+
+* Acquire and inspect the Dogs vs. Cats image dataset
+* Prepare and resize images for neural network input
+* Create training and validation datasets
+* Normalize image pixel values
+* Construct a convolutional neural network
+* Apply convolutional filters for feature extraction
+* Use pooling to reduce spatial representations
+* Perform binary cat-versus-dog classification
+* Train and validate the CNN
+* Visualize training and validation accuracy
+* Analyze training and validation loss
+* Evaluate model generalization
+* Identify potential overfitting
+* Generate predictions on previously unseen images
+
+This assignment provides an important contrast with CTA5. CTA5 demonstrated that a more complex neural network was not necessarily superior to a Random Forest when working with structured molecular features. CTA6 examines a problem where the spatial relationships within raw image data provide a stronger architectural justification for deep learning. Rather than assuming CNNs are superior because they are more sophisticated, the project explores **why convolution is particularly appropriate for data containing meaningful spatial structure**.
+
+**Status:** In progress
+
+---
+
 ## Portfolio Project – Encoder-Decoder Model for Sequence-to-Sequence Prediction
 
 The CSC580 Portfolio Project brings together concepts developed throughout the course and applies them toward the design and evaluation of an **encoder-decoder Long Short-Term Memory (LSTM) neural network for sequence-to-sequence prediction**.
@@ -221,6 +253,7 @@ Additional portfolio milestones will be documented as the project progresses.
 * Matplotlib
 * Seaborn
 * TensorBoard
+* Kaggle / KaggleHub
 * Git and GitHub
 
 ---
@@ -229,6 +262,11 @@ Additional portfolio milestones will be documented as the project progresses.
 
 * Deep learning with TensorFlow and Keras
 * Feedforward neural network architecture
+* Convolutional neural networks
+* Computer vision
+* Image preprocessing and classification
+* Convolutional feature extraction
+* Pooling and spatial representation
 * Regression modeling
 * Binary classification
 * Random Forest classification
@@ -263,11 +301,15 @@ While these assignments use educational and benchmark datasets, the underlying m
 
 My long-term research focuses on applying artificial intelligence to complex healthcare challenges through **AuVentures Health**. Specifically, I am interested in combining deep learning, longitudinal patient records, wearable sensor data, and temporal analysis methods to identify patterns that precede autoimmune and neurodevelopmental disease flares.
 
-The results throughout CSC580 have also reinforced that healthcare AI should not automatically default to the newest or most complex architecture. CTA5 demonstrated that a traditional Random Forest classifier could outperform a systematically optimized neural network on structured biomedical data. Depending on the problem, established machine learning methods may provide stronger generalization, greater interpretability, or lower computational complexity than deep learning.
+The results throughout CSC580 have reinforced that healthcare AI should not automatically default to the newest or most complex architecture. CTA5 demonstrated that a traditional Random Forest classifier could outperform a systematically optimized neural network on structured biomedical data. Depending on the problem, established machine learning methods may provide stronger generalization, greater interpretability, or lower computational complexity than deep learning.
 
-The Portfolio Project extends this exploration into sequential modeling. Early stopping and test-set evaluation reinforce the importance of developing models that generalize beyond their training data, while encoder-decoder and LSTM architectures introduce methods for learning from sequential information. These concepts provide foundations for exploring models that can interpret longitudinal patient histories, retain clinically relevant temporal context, and transform sequences of patient information into useful representations for clinical reasoning support.
+CTA6 introduces the complementary lesson: certain data structures can provide a compelling reason to use specialized deep-learning architectures. CNNs exploit local spatial relationships within images, allowing them to learn hierarchical visual features directly from raw pixel data. Similar convolutional approaches can also be applied to medical imaging and, through one-dimensional convolutions, temporal physiological signals such as ECG, heart rate, HRV, sleep, activity, and other wearable measurements.
 
-Future clinical systems may therefore incorporate a combination of **Random Forests, gradient-boosted models, Dynamic Time Warping (DTW), recurrent neural networks, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific modeling** rather than relying on a single architecture. The appropriate method should be determined by the characteristics of the data, the intended clinical question, generalization performance, interpretability requirements, and the consequences of prediction errors.
+The Portfolio Project extends this exploration further into sequential modeling. Early stopping and test-set evaluation reinforce the importance of developing models that generalize beyond their training data, while encoder-decoder and LSTM architectures introduce methods for learning from sequential information. These concepts provide foundations for exploring models that can interpret longitudinal patient histories, retain clinically relevant temporal context, and transform sequences of patient information into useful representations for clinical reasoning support.
+
+Future clinical systems may therefore incorporate a combination of **Random Forests, gradient-boosted models, convolutional neural networks, Dynamic Time Warping (DTW), recurrent neural networks, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific modeling** rather than relying on a single architecture.
+
+The appropriate method should be determined by the characteristics of the data, the intended clinical question, generalization performance, interpretability requirements, and the consequences of prediction errors. The objective is not to deploy the most sophisticated form of AI available, but to identify the computational approach that most reliably and responsibly solves the problem.
 
 ---
 
