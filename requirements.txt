@@ -1,37 +1,40 @@
 # CSC580 - Deep Learning
-# Core project dependencies
+# Colorado State University Global
 # Python 3.11
 
+# ------------------------------------------------------------
 # Deep Learning
+# ------------------------------------------------------------
 tensorflow==2.21.0
 keras==3.15.1
 
-# Biomedical / Molecular Machine Learning
-deepchem==2.8.0
-rdkit
-# CSC580 - Deep Learning
-# Core project dependencies
-# Python 3.11
-
-# Deep Learning
-tensorflow==2.21.0
-keras==3.15.1
-
-# Biomedical / Molecular Machine Learning
-deepchem==2.8.0
-rdkit
-
+# ------------------------------------------------------------
 # Machine Learning
+# ------------------------------------------------------------
 scikit-learn==1.9.0
 
-# Data Processing
+# ------------------------------------------------------------
+# Data Processing and Scientific Computing
+# ------------------------------------------------------------
 numpy==2.4.6
 pandas==3.0.5
 scipy==1.17.1
 
+# ------------------------------------------------------------
 # Visualization
+# ------------------------------------------------------------
 matplotlib==3.11.1
 seaborn==0.13.2
 
+# ------------------------------------------------------------
+# Biomedical / Molecular Machine Learning
+# Used by CTA4 and CTA5 (Tox21)
+# ------------------------------------------------------------
+deepchem==2.8.0
+rdkit==2023.9.6
+
+# ------------------------------------------------------------
 # Dataset Access
-kagglehub
+# Used by CTA6 (Cats vs. Dogs)
+# ------------------------------------------------------------
+kagglehub==1.0.2

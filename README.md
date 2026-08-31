@@ -2,7 +2,9 @@
 
 This repository contains coursework, programming assignments, portfolio milestones, and experiments completed for **CSC580 – Deep Learning** as part of my **Master of Science in Artificial Intelligence** at **Colorado State University Global**.
 
-The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, hyperparameter tuning, model evaluation, convolutional neural networks, recurrent neural networks, and predictive analytics. Each assignment builds toward a deeper understanding of designing, training, evaluating, and selecting machine learning architectures while applying those concepts to increasingly complex structured, visual, and sequential datasets.
+The course explores the practical implementation of deep learning using TensorFlow and Keras, including neural network architecture, supervised learning, optimization, hyperparameter tuning, model evaluation, convolutional neural networks, recurrent neural networks, and sequence-to-sequence learning.
+
+Across the course, I explored not only how to build increasingly complex neural networks, but also when those architectures are appropriate. A recurring finding throughout the coursework was that greater model complexity does not automatically produce better results. Architecture selection should instead reflect the structure of the data, the problem being solved, and performance on previously unseen data.
 
 ---
 
@@ -15,13 +17,15 @@ CSC580/
 │   ├── CTA2-NeuralNetwork/
 │   ├── CTA3-AutoMPG-Regression/
 │   ├── CTA4-Toxicology-Classification/
-│   ├── CTA-NN-Accuracy/
+│   ├── CTA5-NN-Accuracy/
 │   ├── CTA6-CNN-Cats-Dogs/
 │   └── Portfolio_Project/
-│       ├── Milestones/
-│       ├── Encoder_Decoder/
-│       ├── Research/
-│       ├── Final_Deliverables/
+│       ├── Model_Performance/
+│       ├── Encoder_Decoder_Final/
+│       │   ├── encoder_decoder_lstm.py
+│       │   ├── runtime_predictions.txt
+│       │   ├── figures/
+│       │   └── paper/
 │       └── README.md
 ├── experiments/
 ├── README.md
@@ -31,98 +35,88 @@ CSC580/
 
 ---
 
-## Coursework
+# Coursework
 
-### CTA1 – Linear Regression
+## CTA1 – Linear Regression
 
 Developed a supervised machine learning model using Scikit-learn's `LinearRegression` to learn relationships between generated input features and continuous target values.
 
-**Topics Covered**
+### Topics Covered
 
-* Linear regression
-* Feature generation
-* Model fitting
-* Prediction
-* Regression evaluation
+- Linear regression
+- Feature generation
+- Model fitting
+- Prediction
+- Regression evaluation
 
 ---
 
-### CTA2 – Neural Network Revenue Prediction
+## CTA2 – Neural Network Revenue Prediction
 
 Designed, trained, evaluated, and deployed a fully connected neural network using TensorFlow and Keras to predict future video game revenue from historical sales data.
 
-**Workflow**
+### Workflow
 
-* Data preprocessing with MinMaxScaler
-* Neural network design
-* Model training (50 epochs)
-* Model evaluation using Mean Squared Error (MSE)
-* Model serialization
-* Predicting unseen data
+- Data preprocessing with MinMaxScaler
+- Neural network design
+- Model training
+- Model evaluation using Mean Squared Error (MSE)
+- Model serialization
+- Prediction on unseen data
 
 ---
 
-### CTA3 – TensorFlow Regression with the Auto MPG Dataset
+## CTA3 – TensorFlow Regression with the Auto MPG Dataset
 
 Built a deep learning regression model using TensorFlow and Keras to predict automobile fuel efficiency (MPG) from vehicle characteristics contained in the UCI Auto MPG dataset.
 
-**Workflow**
+### Workflow
 
-* Downloading and importing data
-* Data cleaning and preprocessing
-* Exploratory data analysis
-* Feature normalization
-* Neural network construction
-* Model training (1,000 epochs)
-* Model evaluation using MAE and MSE
-* Visualization of training performance
+- Data acquisition and preprocessing
+- Exploratory data analysis
+- Feature normalization
+- Neural network construction
+- Model training
+- MAE and MSE evaluation
+- Training-performance visualization
+- Prediction on unseen test data
 
----
-
-### CTA4 – Toxicology Classification with Deep Learning
-
-Designed and implemented a feedforward neural network for binary toxicology classification using the **DeepChem Tox21** benchmark dataset. This project modernized legacy TensorFlow 1.x instructional code for compatibility with **TensorFlow 2.21**, resolved DeepChem and RDKit dependency issues, implemented mini-batch gradient descent with dropout regularization, monitored model convergence using TensorBoard, and evaluated model performance on previously unseen molecular compounds.
-
-**Workflow**
-
-* Loading and preprocessing the DeepChem Tox21 dataset
-* Molecular fingerprint feature extraction (1,024 features)
-* Binary toxicity classification
-* Feedforward neural network construction
-* ReLU activation and dropout regularization
-* Binary cross-entropy loss
-* Adam optimization
-* Mini-batch gradient descent
-* TensorBoard visualization and model convergence analysis
-* Validation accuracy: **90.92%**
-* Technical documentation of TensorFlow and RDKit compatibility modernization
+This assignment later became the foundation for the first Portfolio Project milestone, where the original training process was revisited using early stopping.
 
 ---
 
-### CTA5 – Neural Network Accuracy and Hyperparameter Optimization
+## CTA4 – Toxicology Classification with Deep Learning
 
-Extended the Tox21 classification work from CTA4 to investigate how neural network architecture and training hyperparameters affect model performance and generalization. The assignment compared a traditional **Random Forest classifier** with a configurable TensorFlow/Keras neural network and systematically evaluated alternative hyperparameter configurations.
+Designed and implemented a feedforward neural network for binary toxicology classification using the **DeepChem Tox21** benchmark dataset.
 
-The instructor-provided implementation again relied on legacy TensorFlow 1.x graph and session APIs. Building upon the compatibility lessons from CTA4, the experimental design was preserved while the implementation was modernized for **TensorFlow 2.21 and the current Keras API**.
+The project also required modernizing legacy TensorFlow 1.x instructional code for compatibility with **TensorFlow 2.21**, resolving DeepChem and RDKit dependency issues, implementing mini-batch training with dropout regularization, and evaluating model performance on previously unseen molecular compounds.
 
-**Workflow**
+### Workflow
 
-* Established a 50-estimator Random Forest baseline
-* Developed a configurable TensorFlow/Keras neural network
-* Evaluated hidden-layer width and network depth
-* Tuned learning rate and dropout regularization
-* Evaluated training duration and batch size
-* Tested positive-class weighting
-* Repeated configurations across multiple random seeds
-* Averaged validation performance to reduce initialization variance
-* Conducted a two-stage hyperparameter search
-* Evaluated the final optimized model on previously unseen test data
-* Analyzed model generalization and overfitting
-* Compared optimized deep learning performance with traditional machine learning
+- DeepChem Tox21 dataset loading and preprocessing
+- Molecular fingerprint feature extraction
+- Binary toxicity classification
+- Feedforward neural network construction
+- ReLU activation
+- Dropout regularization
+- Binary cross-entropy loss
+- Adam optimization
+- Mini-batch gradient descent
+- TensorBoard convergence analysis
+- Validation accuracy: **90.92%**
+- TensorFlow and RDKit compatibility modernization
 
-**Hyperparameter Search**
+---
 
-The initial optimization evaluated **16 neural network configurations**, each across three random seeds, resulting in **48 training runs**. A second refinement stage evaluated **12 additional configurations** across three seeds, adding another **36 training runs**.
+## CTA5 – Neural Network Accuracy and Hyperparameter Optimization
+
+Extended the Tox21 work from CTA4 to investigate how neural network architecture and training hyperparameters affect model performance and generalization.
+
+The assignment compared a traditional **Random Forest classifier** with a configurable TensorFlow/Keras neural network and systematically evaluated alternative hyperparameter configurations.
+
+### Hyperparameter Search
+
+The initial optimization evaluated **16 neural network configurations** across three random seeds, resulting in **48 training runs**. A second refinement stage evaluated **12 additional configurations** across three seeds, adding another **36 training runs**.
 
 The strongest configuration used:
 
@@ -136,7 +130,7 @@ Batch Size:         50
 Positive Weighting: Enabled
 ```
 
-**Results**
+### Results
 
 | Model | Validation Accuracy | Test Accuracy |
 |---|---:|---:|
@@ -147,71 +141,72 @@ Positive Weighting: Enabled
 
 Hyperparameter optimization improved the neural network's average validation performance from **62.43% to 66.13%**. However, the final neural network achieved **99.62% training accuracy but only 65.00% test accuracy**, indicating substantial overfitting.
 
-Perhaps the most important finding was that the comparatively traditional Random Forest classifier generalized better than the optimized neural network. This experiment reinforced that **greater model complexity does not inherently produce better predictive performance**. Model selection should be driven by the characteristics of the problem, empirical performance, and generalization to unseen data rather than an assumption that deep learning will always outperform traditional machine learning.
+The comparatively traditional Random Forest classifier generalized better than the optimized neural network. This became one of the most important findings of the course: **greater model complexity does not inherently produce better predictive performance**.
 
 ---
 
-### CTA6 – Convolutional Neural Network Image Classification
+## CTA6 – Convolutional Neural Network Image Classification
 
-Introduces **Convolutional Neural Networks (CNNs)** through a binary computer-vision problem: predicting whether an image contains a cat or a dog.
+Implemented a **Convolutional Neural Network (CNN)** for binary image classification using cat and dog images.
 
-Unlike previous assignments that provided models with structured features such as vehicle characteristics or molecular fingerprints, this assignment works directly with image data. The CNN must learn useful visual representations from pixel relationships, demonstrating why specialized deep-learning architectures can be particularly valuable when the structure of the underlying data supports their use.
+Unlike earlier assignments that relied on structured features such as vehicle characteristics or molecular fingerprints, this project worked directly with image data. The CNN learned hierarchical visual representations from pixel relationships, providing a practical demonstration of why specialized deep-learning architectures can be particularly effective when the structure of the underlying data supports their use.
 
-The assignment specifies Kaggle's **Dogs vs. Cats** dataset, originally containing 25,000 labeled training images divided evenly between cats and dogs. During project setup, the legacy Kaggle competition repeatedly redirected download attempts to its competition rules despite acceptance of those rules. Authenticated KaggleHub access was also tested but returned an HTTP 403 permission response. The project therefore uses TensorFlow's filtered distribution of the same Dogs vs. Cats images, which removes a small number of corrupted source files.
+The assignment specified Kaggle's **Dogs vs. Cats** dataset. During project setup, legacy Kaggle competition access repeatedly redirected downloads to the competition rules page, while authenticated KaggleHub access returned an HTTP 403 response. The project therefore used TensorFlow's filtered distribution of the same Dogs vs. Cats images, which excludes a small number of corrupted source files.
 
-**Planned Workflow**
+### Workflow
 
-* Acquire and inspect the Dogs vs. Cats image dataset
-* Prepare and resize images for neural network input
-* Create training and validation datasets
-* Normalize image pixel values
-* Construct a convolutional neural network
-* Apply convolutional filters for feature extraction
-* Use pooling to reduce spatial representations
-* Perform binary cat-versus-dog classification
-* Train and validate the CNN
-* Visualize training and validation accuracy
-* Analyze training and validation loss
-* Evaluate model generalization
-* Identify potential overfitting
-* Generate predictions on previously unseen images
+- Image dataset acquisition and inspection
+- Image resizing and preprocessing
+- Training and validation dataset creation
+- Pixel normalization
+- Convolutional feature extraction
+- Pooling and spatial representation
+- Binary cat-versus-dog classification
+- CNN training and validation
+- Accuracy and loss visualization
+- Generalization analysis
+- Prediction on previously unseen images
 
-This assignment provides an important contrast with CTA5. CTA5 demonstrated that a more complex neural network was not necessarily superior to a Random Forest when working with structured molecular features. CTA6 examines a problem where the spatial relationships within raw image data provide a stronger architectural justification for deep learning. Rather than assuming CNNs are superior because they are more sophisticated, the project explores **why convolution is particularly appropriate for data containing meaningful spatial structure**.
+CTA6 provided an important contrast with CTA5. CTA5 demonstrated that a more complex neural network was not necessarily superior to a Random Forest for structured molecular features. CTA6 demonstrated the complementary lesson: **some data structures provide a strong architectural justification for deep learning**. Convolution is particularly appropriate when local spatial relationships contain meaningful information.
 
-**Status:** In progress
+**Status: Complete**
 
 ---
 
-## Portfolio Project – Encoder-Decoder Model for Sequence-to-Sequence Prediction
+# Portfolio Project – Encoder-Decoder Model for Sequence-to-Sequence Prediction
 
-The CSC580 Portfolio Project brings together concepts developed throughout the course and applies them toward the design and evaluation of an **encoder-decoder Long Short-Term Memory (LSTM) neural network for sequence-to-sequence prediction**.
+The CSC580 Portfolio Project brings together concepts developed throughout the course through the design, implementation, and evaluation of an **encoder-decoder Long Short-Term Memory (LSTM) neural network for sequence-to-sequence prediction**.
 
-Rather than treating the final model as a single implementation, the `Portfolio_Project` directory documents the project incrementally through milestones, research, model evaluation, experimentation, and the final encoder-decoder implementation.
+The portfolio contains both an earlier model-performance milestone and the final encoder-decoder project.
 
-### Portfolio Milestone 1 – Improving TensorFlow Model Performance and Quality
+---
 
-The first portfolio milestone revisited the Auto MPG regression model developed in CTA3 to examine model generalization and improve the training process.
+## Portfolio Milestone – Improving TensorFlow Model Performance and Quality
 
-The original model trained for 1,000 epochs even though validation performance stabilized much earlier. TensorFlow's `EarlyStopping` callback was introduced to monitor validation loss and automatically terminate training when additional epochs no longer produced meaningful improvement.
+The first portfolio milestone revisited the Auto MPG regression model from CTA3 to examine model generalization and improve the training process.
 
-**Results**
+The original model allowed training for up to 1,000 epochs even though validation performance stabilized much earlier. TensorFlow's `EarlyStopping` callback was introduced to monitor validation loss and automatically terminate training when additional epochs no longer produced meaningful improvement.
 
-* Early Stopping patience: **10 epochs**
-* Original maximum training length: **1,000 epochs**
-* Updated model stopped after: **92 epochs**
-* Test Mean Absolute Error (MAE): **2.04 MPG**
-* Test Mean Squared Error (MSE): **7.19**
-* Evaluated actual versus predicted MPG
-* Analyzed prediction-error distribution
-* Examined model generalization using previously unseen test data
+### Results
 
-This milestone demonstrated that additional training does not necessarily improve a neural network. Monitoring validation performance allowed the model to stop substantially earlier while maintaining strong performance on unseen data.
+- Early stopping patience: **10 epochs**
+- Original maximum training length: **1,000 epochs**
+- Updated model stopped after: **92 epochs**
+- Test Mean Absolute Error (MAE): **2.04 MPG**
+- Test Mean Squared Error (MSE): **7.19**
+- Actual-versus-predicted MPG evaluation
+- Prediction-error distribution analysis
+- Generalization evaluation on unseen test data
 
-### Final Encoder-Decoder Model
+This milestone demonstrated that additional training does not necessarily improve a neural network. Monitoring validation performance allowed training to terminate substantially earlier while maintaining strong performance on unseen data.
 
-The final Portfolio Project will implement an encoder-decoder LSTM architecture using TensorFlow and Keras.
+---
 
-The sequence-to-sequence problem will provide the model with a six-element integer sequence and require it to generate a three-element sequence containing the first three input values in reverse order.
+## Final Portfolio – Encoder-Decoder LSTM
+
+The final Portfolio Project implements an **encoder-decoder LSTM architecture using TensorFlow and Keras**.
+
+The model receives a six-element integer sequence and learns to generate a three-element output sequence containing the first three input values in reverse order.
 
 For example:
 
@@ -223,97 +218,153 @@ Target:
 [18, 28, 13]
 ```
 
-The final implementation will explore:
+Although intentionally controlled, the problem demonstrates the core mechanics of sequence-to-sequence learning used in much more complex systems.
 
-* Encoder-decoder neural network architecture
-* Long Short-Term Memory (LSTM) networks
-* Sequence-to-sequence prediction
-* Encoder hidden and cell states
-* Teacher forcing during training
-* One-hot encoded sequence representations
-* Separate training and inference models
-* Recursive decoder prediction
-* Model generalization and sequence accuracy
-* Neural-network architecture visualization
+### Architecture
 
-Additional portfolio milestones will be documented as the project progresses.
+The encoder processes the complete source sequence and represents it through its **hidden state and cell state**. These states initialize the decoder, which generates the output sequence.
 
----
+Training uses a shifted target sequence beginning with a start token. During inference, separate encoder and decoder models generate predictions recursively, allowing each decoder output and updated internal state to contribute to the next prediction.
 
-## Technologies
+### Implementation
 
-* Python 3.11
-* TensorFlow 2.21
-* Keras
-* DeepChem
-* RDKit
-* Scikit-learn
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* TensorBoard
-* Kaggle / KaggleHub
-* Git and GitHub
+The final project includes:
 
----
+- Synthetic sequence generation
+- One-hot encoded representations
+- Encoder and decoder LSTM networks
+- 128 LSTM units
+- Hidden-state and cell-state transfer
+- Shifted decoder inputs
+- Teacher-forced training
+- Dense softmax output
+- Separate training and inference models
+- Recursive decoder prediction
+- Evaluation on 100 unseen sequences
+- Exact-sequence accuracy
+- Human-readable runtime predictions
+- Runtime prediction output file
+- Neural-network processing flowchart
+- Research and analysis of real-world encoder-decoder applications
 
-## Skills Demonstrated
+### Results
 
-* Deep learning with TensorFlow and Keras
-* Feedforward neural network architecture
-* Convolutional neural networks
-* Computer vision
-* Image preprocessing and classification
-* Convolutional feature extraction
-* Pooling and spatial representation
-* Regression modeling
-* Binary classification
-* Random Forest classification
-* Hyperparameter optimization
-* Multi-seed model evaluation
-* Model selection and comparison
-* Model training and optimization
-* Early stopping and overfitting mitigation
-* Validation and test-set evaluation
-* Model generalization analysis
-* Prediction-error analysis
-* Data preprocessing and normalization
-* Molecular fingerprint analysis
-* Mini-batch gradient descent
-* Dropout regularization
-* Class weighting
-* Adam and RMSprop optimization
-* TensorBoard visualization
-* Model convergence analysis
-* Scientific Python dependency management
-* TensorFlow 1.x to TensorFlow 2.x modernization
-* Biomedical machine learning workflows
-* Recurrent neural networks
-* LSTM architecture
-* Sequence-to-sequence modeling
+The trained model achieved approximately **99% validation accuracy**.
+
+Using the stricter exact-sequence evaluation, in which all three generated values must match the expected target, independent runs achieved approximately **96–98% exact-sequence accuracy on 100 previously unseen sequences**.
+
+Sample output:
+
+```text
+X=[2, 20, 17, 5, 24, 31]
+y=[17, 20, 2]
+yhat=[17, 20, 2]
+```
+
+The distinction between categorical accuracy and exact-sequence accuracy became an important part of the analysis. A model can correctly predict most individual elements while still making an error somewhere within a complete generated sequence. Exact-sequence evaluation therefore provides a more demanding measure of whether the model learned the intended transformation.
+
+### Industry Research
+
+The accompanying research examines encoder-decoder applications across four distinct areas:
+
+- **Machine translation** – transforming sequences between languages
+- **Healthcare** – learning from longitudinal clinical histories to support prediction of future clinical events
+- **Transportation** – using historical movement sequences to predict future trajectories
+- **Energy and utilities** – using historical temporal patterns for multistep demand forecasting
+
+Despite the differences between these industries, each application involves a related computational problem: **using information contained in one sequence to generate or predict another sequence**.
+
+**Status: Complete**
 
 ---
 
-## Future Research
+# Technologies
 
-While these assignments use educational and benchmark datasets, the underlying methods directly translate to more complex real-world prediction and reasoning problems.
-
-My long-term research focuses on applying artificial intelligence to complex healthcare challenges through **AuVentures Health**. Specifically, I am interested in combining deep learning, longitudinal patient records, wearable sensor data, and temporal analysis methods to identify patterns that precede autoimmune and neurodevelopmental disease flares.
-
-The results throughout CSC580 have reinforced that healthcare AI should not automatically default to the newest or most complex architecture. CTA5 demonstrated that a traditional Random Forest classifier could outperform a systematically optimized neural network on structured biomedical data. Depending on the problem, established machine learning methods may provide stronger generalization, greater interpretability, or lower computational complexity than deep learning.
-
-CTA6 introduces the complementary lesson: certain data structures can provide a compelling reason to use specialized deep-learning architectures. CNNs exploit local spatial relationships within images, allowing them to learn hierarchical visual features directly from raw pixel data. Similar convolutional approaches can also be applied to medical imaging and, through one-dimensional convolutions, temporal physiological signals such as ECG, heart rate, HRV, sleep, activity, and other wearable measurements.
-
-The Portfolio Project extends this exploration further into sequential modeling. Early stopping and test-set evaluation reinforce the importance of developing models that generalize beyond their training data, while encoder-decoder and LSTM architectures introduce methods for learning from sequential information. These concepts provide foundations for exploring models that can interpret longitudinal patient histories, retain clinically relevant temporal context, and transform sequences of patient information into useful representations for clinical reasoning support.
-
-Future clinical systems may therefore incorporate a combination of **Random Forests, gradient-boosted models, convolutional neural networks, Dynamic Time Warping (DTW), recurrent neural networks, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific modeling** rather than relying on a single architecture.
-
-The appropriate method should be determined by the characteristics of the data, the intended clinical question, generalization performance, interpretability requirements, and the consequences of prediction errors. The objective is not to deploy the most sophisticated form of AI available, but to identify the computational approach that most reliably and responsibly solves the problem.
+- Python 3.11
+- TensorFlow 2.21
+- Keras
+- DeepChem
+- RDKit
+- Scikit-learn
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- TensorBoard
+- Kaggle / KaggleHub
+- Git and GitHub
 
 ---
 
-## Running the Projects
+# Skills Demonstrated
+
+- Deep learning with TensorFlow and Keras
+- Feedforward neural networks
+- Convolutional neural networks
+- Recurrent neural networks
+- LSTM architecture
+- Encoder-decoder architecture
+- Sequence-to-sequence modeling
+- Teacher forcing
+- Recursive sequence inference
+- Computer vision
+- Image preprocessing and classification
+- Regression modeling
+- Binary classification
+- Random Forest classification
+- Hyperparameter optimization
+- Multi-seed model evaluation
+- Model selection and comparison
+- Early stopping
+- Overfitting analysis
+- Validation and test-set evaluation
+- Exact-sequence evaluation
+- Model generalization analysis
+- Data preprocessing and normalization
+- Molecular fingerprint analysis
+- Mini-batch gradient descent
+- Dropout regularization
+- Class weighting
+- Adam and RMSprop optimization
+- TensorBoard visualization
+- TensorFlow 1.x to TensorFlow 2.x modernization
+- Scientific Python dependency management
+
+---
+
+# Course Takeaways
+
+One of the strongest lessons from CSC580 was that selecting an appropriate model is more important than simply selecting the most sophisticated model available.
+
+The coursework provided several useful contrasts:
+
+**CTA5** demonstrated that a Random Forest could generalize better than a systematically optimized neural network when working with structured molecular data.
+
+**CTA6** demonstrated why CNNs become valuable when spatial relationships within raw image data contain meaningful information.
+
+**The Portfolio Project** demonstrated why recurrent and encoder-decoder architectures are useful when the order and relationship between observations are themselves part of the problem.
+
+Together, these projects reinforced a broader principle: **the architecture should follow the problem and the data, not the other way around.**
+
+---
+
+# Future Research
+
+While these assignments use educational and benchmark datasets, the underlying methods translate to more complex real-world prediction and reasoning problems.
+
+My long-term research focuses on applying artificial intelligence to complex healthcare challenges through **AuVentures Health**, particularly where longitudinal patient records, wearable data, and temporal patterns may provide information that is difficult to identify from isolated clinical observations.
+
+CSC580 reinforced that healthcare AI should not automatically default to the newest or most complex architecture. Depending on the problem, useful systems may combine traditional machine learning, deep learning, temporal analysis, retrieval, and patient-specific modeling.
+
+Potential approaches include **Random Forests, gradient-boosted models, convolutional neural networks, Dynamic Time Warping (DTW), recurrent neural networks, encoder-decoder architectures, transformers, retrieval-augmented generation (RAG), multimodal learning, longitudinal pattern recognition, and patient-specific modeling**.
+
+The appropriate method should ultimately be determined by the characteristics of the data, the clinical question being addressed, generalization performance, interpretability requirements, and the consequences of prediction errors.
+
+The objective is not to deploy the most sophisticated form of AI available, but to identify the computational approach that most reliably and responsibly solves the problem.
+
+---
+
+# Running the Projects
 
 Install the required dependencies:
 
@@ -321,20 +372,17 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
-Each assignment and portfolio milestone contains its own Python scripts, documentation, and supporting materials. Refer to the individual project folders for project-specific execution instructions, results, screenshots, and research papers.
+Each assignment and portfolio component contains its own Python scripts, documentation, results, and supporting materials. Refer to the individual project directories for project-specific execution instructions.
 
 ---
 
-## Author
+# Author
 
 **Christine DeLuna**
 
-Founder & CEO, AuVentures Health
-
-Master of Science in Artificial Intelligence
-
+Founder & CEO, AuVentures Health  
+Master of Science in Artificial Intelligence  
 Colorado State University Global
 
-GitHub: https://github.com/christinedeluna
-
+GitHub: https://github.com/christinedeluna  
 Website: https://www.auventureshealth.org
